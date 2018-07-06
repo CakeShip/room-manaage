@@ -143,11 +143,13 @@ public class Container extends javax.swing.JFrame {
         roomedit = new javax.swing.JDialog();
         resolve_resolve_panel1 = new javax.swing.JPanel();
         jPanel7 = new javax.swing.JPanel();
-        username1 = new javax.swing.JTextField();
-        jLabel4 = new javax.swing.JLabel();
+        room_edit_name = new javax.swing.JTextField();
         confirm_resolve1 = new javax.swing.JButton();
         cancel_resolve1 = new javax.swing.JButton();
         room_edit_rate = new javax.swing.JTextArea();
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        room_edit_capacity = new javax.swing.JTextArea();
         jPanel1 = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
         username = new javax.swing.JLabel();
@@ -465,32 +467,26 @@ public class Container extends javax.swing.JFrame {
 
         jPanel7.setBackground(new java.awt.Color(0, 204, 204));
 
-        username1.setBackground(new java.awt.Color(0, 204, 204));
-        username1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        username1.setForeground(new java.awt.Color(255, 255, 255));
-        username1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        username1.setToolTipText("Username");
-        username1.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(255, 255, 255)));
-        username1.setCaretColor(new java.awt.Color(255, 255, 255));
-        username1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                username1ActionPerformed(evt);
-            }
-        });
+        room_edit_name.setBackground(new java.awt.Color(0, 204, 204));
+        room_edit_name.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        room_edit_name.setForeground(new java.awt.Color(255, 255, 255));
+        room_edit_name.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        room_edit_name.setToolTipText("Username");
+        room_edit_name.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(255, 255, 255)));
+        room_edit_name.setCaretColor(new java.awt.Color(255, 255, 255));
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
         jPanel7Layout.setHorizontalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(username1, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addComponent(room_edit_name, javax.swing.GroupLayout.Alignment.TRAILING)
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(username1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 57, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
+                .addGap(0, 14, Short.MAX_VALUE)
+                .addComponent(room_edit_name, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
-
-        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel4.setText("Mark as resolved?");
 
         confirm_resolve1.setText("Confirm");
         confirm_resolve1.setFocusable(false);
@@ -513,6 +509,15 @@ public class Container extends javax.swing.JFrame {
         room_edit_rate.setRows(5);
         room_edit_rate.setToolTipText("Room Rate");
 
+        jLabel1.setText("Room Rate");
+
+        jLabel2.setText("Room Capacity");
+
+        room_edit_capacity.setColumns(20);
+        room_edit_capacity.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
+        room_edit_capacity.setRows(5);
+        room_edit_capacity.setToolTipText("Room Rate");
+
         javax.swing.GroupLayout resolve_resolve_panel1Layout = new javax.swing.GroupLayout(resolve_resolve_panel1);
         resolve_resolve_panel1.setLayout(resolve_resolve_panel1Layout);
         resolve_resolve_panel1Layout.setHorizontalGroup(
@@ -521,35 +526,47 @@ public class Container extends javax.swing.JFrame {
             .addGroup(resolve_resolve_panel1Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(resolve_resolve_panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, resolve_resolve_panel1Layout.createSequentialGroup()
+                        .addGap(0, 2, Short.MAX_VALUE)
+                        .addComponent(room_edit_capacity, javax.swing.GroupLayout.PREFERRED_SIZE, 473, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(resolve_resolve_panel1Layout.createSequentialGroup()
-                        .addComponent(cancel_resolve1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(confirm_resolve1)
+                        .addGroup(resolve_resolve_panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(resolve_resolve_panel1Layout.createSequentialGroup()
+                                .addComponent(cancel_resolve1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(confirm_resolve1))
+                            .addComponent(jLabel1))
                         .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 475, Short.MAX_VALUE))
+                    .addGroup(resolve_resolve_panel1Layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addContainerGap())
             .addGroup(resolve_resolve_panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(resolve_resolve_panel1Layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, resolve_resolve_panel1Layout.createSequentialGroup()
+                    .addContainerGap(11, Short.MAX_VALUE)
                     .addComponent(room_edit_rate, javax.swing.GroupLayout.PREFERRED_SIZE, 473, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+                    .addContainerGap(11, Short.MAX_VALUE)))
         );
         resolve_resolve_panel1Layout.setVerticalGroup(
             resolve_resolve_panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(resolve_resolve_panel1Layout.createSequentialGroup()
                 .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(135, 135, 135)
-                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel1)
+                .addGap(55, 55, 55)
+                .addComponent(jLabel2)
+                .addGap(18, 18, 18)
+                .addComponent(room_edit_capacity, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
                 .addGroup(resolve_resolve_panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(confirm_resolve1)
                     .addComponent(cancel_resolve1))
                 .addContainerGap())
             .addGroup(resolve_resolve_panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(resolve_resolve_panel1Layout.createSequentialGroup()
-                    .addGap(0, 0, Short.MAX_VALUE)
-                    .addComponent(room_edit_rate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addGap(0, 0, Short.MAX_VALUE)))
+                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, resolve_resolve_panel1Layout.createSequentialGroup()
+                    .addContainerGap(85, Short.MAX_VALUE)
+                    .addComponent(room_edit_rate, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addContainerGap(131, Short.MAX_VALUE)))
         );
 
         javax.swing.GroupLayout roomeditLayout = new javax.swing.GroupLayout(roomedit.getContentPane());
@@ -1326,6 +1343,17 @@ public class Container extends javax.swing.JFrame {
                             int col = table.columnAtPoint(point);
 
                             if (mouseEvent.getClickCount() == 2 ) {
+                                String roomname = (String) table.getValueAt(table.getSelectedRow(), 0);
+                                rs2 = DBConnect.getResultSet("SELECT * FROM room WHERE roomName LIKE '"+roomname+"'");
+                                try {
+                                    while(rs2.next()){
+                                        room_edit_name.setText(rs2.getString("roomName"));
+                                        room_edit_rate.setText(Float.toString(rs2.getFloat("roomRate")));
+                                        room_edit_capacity.setText(Integer.toString(rs2.getInt("roomCapacity")));
+                                    }
+                                } catch (SQLException ex) {
+                                    Logger.getLogger(Container.class.getName()).log(Level.SEVERE, null, ex);
+                                }
                                 roomedit.setVisible(true);
                             }
                         }
@@ -1443,8 +1471,9 @@ public class Container extends javax.swing.JFrame {
     private javax.swing.JTextArea issue_detail;
     private javax.swing.JLabel issue_name;
     private javax.swing.JLabel issue_name1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
@@ -1482,6 +1511,8 @@ public class Container extends javax.swing.JFrame {
     private javax.swing.JTextField roomCapacity;
     private javax.swing.JTextField roomName;
     private javax.swing.JTextField roomRate;
+    private javax.swing.JTextArea room_edit_capacity;
+    private javax.swing.JTextField room_edit_name;
     private javax.swing.JTextArea room_edit_rate;
     private javax.swing.JLabel room_name;
     private javax.swing.JComboBox<String> room_newIssue;
@@ -1491,6 +1522,5 @@ public class Container extends javax.swing.JFrame {
     private javax.swing.JPanel toDo;
     private javax.swing.JTable toDo_table;
     private javax.swing.JLabel username;
-    private javax.swing.JTextField username1;
     // End of variables declaration//GEN-END:variables
 }
