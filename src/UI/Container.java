@@ -153,11 +153,10 @@ public class Container extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         room_edit_rate = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        //room_edit_capacity = new javax.swing.JTextArea();
-        OccupiedBtn = new javax.swing.JRadioButton();
         room_edit_capacity = new javax.swing.JTextField();
         cancel_resolve1 = new javax.swing.JButton();
         confirm_resolve1 = new javax.swing.JButton();
+        OccupiedBtn = new javax.swing.JRadioButton();
         room_edit_id = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
@@ -530,17 +529,27 @@ public class Container extends javax.swing.JFrame {
             }
         });
 
+        OccupiedBtn.setText("Occupied");
+        OccupiedBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                OccupiedBtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
         jPanel7Layout.setHorizontalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(room_edit_name, javax.swing.GroupLayout.DEFAULT_SIZE, 515, Short.MAX_VALUE)
-            .addGroup(jPanel7Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(room_edit_rate, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 495, Short.MAX_VALUE)
-                    .addComponent(room_edit_capacity, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 495, Short.MAX_VALUE)
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(OccupiedBtn))
+                    .addComponent(room_edit_rate, javax.swing.GroupLayout.DEFAULT_SIZE, 495, Short.MAX_VALUE)
+                    .addComponent(room_edit_capacity, javax.swing.GroupLayout.DEFAULT_SIZE, 495, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel7Layout.createSequentialGroup()
                         .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel1)
                             .addComponent(jLabel2)
@@ -568,70 +577,15 @@ public class Container extends javax.swing.JFrame {
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(cancel_resolve1)
                     .addComponent(confirm_resolve1))
-                .addContainerGap(45, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(OccupiedBtn)
+                .addContainerGap(15, Short.MAX_VALUE))
         );
+
+        resolve_resolve_panel1.add(jPanel7);
 
         room_edit_id.setFont(new java.awt.Font("Tahoma", 0, 1)); // NOI18N
-
-        OccupiedBtn.setText("Occupied");
-        OccupiedBtn.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                OccupiedBtnActionPerformed(evt);
-            }
-        });
-
-        javax.swing.GroupLayout resolve_resolve_panel1Layout = new javax.swing.GroupLayout(resolve_resolve_panel1);
-        resolve_resolve_panel1.setLayout(resolve_resolve_panel1Layout);
-        resolve_resolve_panel1Layout.setHorizontalGroup(
-            resolve_resolve_panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(resolve_resolve_panel1Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(resolve_resolve_panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, resolve_resolve_panel1Layout.createSequentialGroup()
-                        .addGap(0, 2, Short.MAX_VALUE)
-                        .addComponent(room_edit_capacity, javax.swing.GroupLayout.PREFERRED_SIZE, 473, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(resolve_resolve_panel1Layout.createSequentialGroup()
-                        .addGroup(resolve_resolve_panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel2))
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addGroup(resolve_resolve_panel1Layout.createSequentialGroup()
-                        .addComponent(cancel_resolve1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(confirm_resolve1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(OccupiedBtn)))
-                .addContainerGap())
-            .addGroup(resolve_resolve_panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(resolve_resolve_panel1Layout.createSequentialGroup()
-                    .addGap(247, 247, 247)
-                    .addComponent(room_edit_id)
-                    .addContainerGap(248, Short.MAX_VALUE)))
-        );
-        resolve_resolve_panel1Layout.setVerticalGroup(
-            resolve_resolve_panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(resolve_resolve_panel1Layout.createSequentialGroup()
-                .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel1)
-                .addGap(55, 55, 55)
-                .addComponent(jLabel2)
-                .addGap(18, 18, 18)
-                .addComponent(room_edit_capacity, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addGroup(resolve_resolve_panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(confirm_resolve1)
-                    .addComponent(cancel_resolve1)
-                    .addComponent(OccupiedBtn))
-                .addContainerGap())
-            .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(resolve_resolve_panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(resolve_resolve_panel1Layout.createSequentialGroup()
-                    .addGap(127, 127, 127)
-                    .addComponent(room_edit_id)
-                    .addContainerGap(141, Short.MAX_VALUE)))
-        );
+        resolve_resolve_panel1.add(room_edit_id);
 
         javax.swing.GroupLayout roomeditLayout = new javax.swing.GroupLayout(roomedit.getContentPane());
         roomedit.getContentPane().setLayout(roomeditLayout);
