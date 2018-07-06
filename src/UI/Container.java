@@ -17,10 +17,14 @@ import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
 import java.util.ArrayList;
+import org.jdesktop.swingx.JXDatePicker;
+import org.jdesktop.swingx.JXMonthView;
+import org.jdesktop.swingx.calendar.SingleDaySelectionModel;
 
 public class Container extends javax.swing.JFrame {
     ResultSet rs = null;
     ResultSet rs2 = null;
+    JXDatePicker orig;
     
     private JTable table;
     private Point point;
@@ -35,6 +39,8 @@ public class Container extends javax.swing.JFrame {
         
         DateStart.setFormats("yyyy-MM-dd");
         DateEnd.setFormats("yyyy-MM-dd");
+        
+        orig = DateStart;
     }
     
     private void initToDoTable(){
@@ -713,6 +719,11 @@ public class Container extends javax.swing.JFrame {
         room.setToolTipText("Room");
         room.setBorder(null);
         room.setFocusable(false);
+        room.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                roomActionPerformed(evt);
+            }
+        });
 
         confirm.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         confirm.setText("Confirm");
@@ -732,6 +743,11 @@ public class Container extends javax.swing.JFrame {
         guestName.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(0, 0, 0)));
 
         DateStart.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        DateStart.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                DateStartActionPerformed(evt);
+            }
+        });
 
         DateEnd.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
 
@@ -1263,6 +1279,8 @@ public class Container extends javax.swing.JFrame {
 
     private void ValiBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ValiBtnActionPerformed
         // TODO add your handling code here:
+        JXMonthView m = (JXMonthView)DateStart.getMonthView();
+        m.setSelectionModel(new SingleDaySelectionModel());
         String roomName = room.getSelectedItem().toString();
          ArrayList<Date> dt = new ArrayList();
         int roomID = 0;
@@ -1273,8 +1291,6 @@ public class Container extends javax.swing.JFrame {
             }
             rs = DBConnect.getResultSet("SELECT reservations.checkInDate, reservations.checkOutDate FROM reservations INNER JOIN room ON room.roomId = reservations.roomId WHERE room.roomId = "+roomID+"");
             while(rs.next()){
-               
-
                 Date currdat = rs.getDate("checkInDate");
                 Calendar c = Calendar.getInstance();
                 c.setTime(currdat);
@@ -1294,7 +1310,6 @@ public class Container extends javax.swing.JFrame {
                 Date[] dat = dt.toArray(new Date[dt.size()]);
                 DateStart.getMonthView().setUnselectableDates(dat);
                 DateEnd.getMonthView().setUnselectableDates(dat);
-                DateEnd.getMonthView().setLowerBound(DateStart.getDate());
             }
         } catch (SQLException ex) {
             Logger.getLogger(Container.class.getName()).log(Level.SEVERE, null, ex);
@@ -1303,6 +1318,7 @@ public class Container extends javax.swing.JFrame {
 
     private void menuStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_menuStateChanged
         // TODO add your handling code here:
+        
         String tabname = menu.getTitleAt(menu.getSelectedIndex());
         DBConnect db = new DBConnect();
         DefaultTableModel model = null;
@@ -1427,6 +1443,15 @@ public class Container extends javax.swing.JFrame {
         }
         
     }//GEN-LAST:event_menuStateChanged
+
+    private void DateStartActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_DateStartActionPerformed
+        // TODO add your handling code here:
+        DateEnd.getMonthView().setLowerBound(DateStart.getDate());
+    }//GEN-LAST:event_DateStartActionPerformed
+
+    private void roomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_roomActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_roomActionPerformed
 
     public void open() {
 
