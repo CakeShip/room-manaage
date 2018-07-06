@@ -153,7 +153,7 @@ public class Container extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         room_edit_rate = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        room_edit_capacity = new javax.swing.JTextArea();
+        //room_edit_capacity = new javax.swing.JTextArea();
         OccupiedBtn = new javax.swing.JRadioButton();
         room_edit_capacity = new javax.swing.JTextField();
         cancel_resolve1 = new javax.swing.JButton();
