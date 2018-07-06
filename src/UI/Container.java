@@ -1162,8 +1162,14 @@ public class Container extends javax.swing.JFrame {
         if(JOptionPane.showConfirmDialog(rootPane, "Resolve Issue?")==0){
             Connection con = DBConnect.getConnection();
             int issueID = 0, found = 0;
+            Date currDate = new Date();
+            Calendar c = Calendar.getInstance(); 
+            c.setTime(currDate); 
+            c.add(Calendar.DATE, 1);
+            currDate = c.getTime();
+            java.sql.Date sqlDate = new java.sql.Date(currDate.getTime());
             String varnewIssue = (String)table.getValueAt(table.getSelectedRow(), 0);
-            String sql = "UPDATE todo SET status = ? WHERE todoId = ?";
+            String sql = "UPDATE todo SET status = ?, updatedBy = ?, updatedDate = ? WHERE todoId = ?";
             try {
                 PreparedStatement stmt = con.prepareStatement(sql);
                 rs2 = DBConnect.getResultSet("SELECT (todo.todoId) FROM todo WHERE todo.issueTitle LIKE '"+varnewIssue+"'");
@@ -1176,7 +1182,9 @@ public class Container extends javax.swing.JFrame {
                     Logger.getLogger(Container.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 stmt.setInt(1, found);
-                stmt.setInt(2, issueID);
+                stmt.setInt(2, Storage.ad.getAdminID());
+                stmt.setDate(3, sqlDate);
+                stmt.setInt(4, issueID);
                 stmt.executeUpdate();
                 resolve.setVisible(false);
                 initToDoTable();
@@ -1257,7 +1265,7 @@ public class Container extends javax.swing.JFrame {
         
         String varnewIssue = resolve_edit_room.getItemAt(resolve_edit_room.getSelectedIndex());
         int roomid = 0;
-        rs2 = DBConnect.getResultSet("SELECT (room.roomId) FROM room WHERE room.roomName LIKE '"+varnewIssue+"'");
+        rs2 = DBConnect.getResultSet("SELECT * FROM room WHERE roomName LIKE '"+varnewIssue+"'");
         try {
             if(rs2.next()){
                 roomid = rs2.getInt("roomId");
@@ -1340,6 +1348,7 @@ public class Container extends javax.swing.JFrame {
                 initToDoTable();
                 JOptionPane.showMessageDialog(rootPane, "Successfully Updated Room");
                 roomedit.setVisible(false);
+                initToDoTable();
             } catch (SQLException ex) {
                 Logger.getLogger(Container.class.getName()).log(Level.SEVERE, null, ex);
             }
