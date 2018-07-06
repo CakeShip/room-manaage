@@ -16,6 +16,7 @@ import javax.swing.DefaultComboBoxModel;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
+import java.util.ArrayList;
 
 public class Container extends javax.swing.JFrame {
     ResultSet rs = null;
@@ -165,6 +166,7 @@ public class Container extends javax.swing.JFrame {
         guestName = new javax.swing.JTextField();
         DateStart = new org.jdesktop.swingx.JXDatePicker();
         DateEnd = new org.jdesktop.swingx.JXDatePicker();
+        ValiBtn = new javax.swing.JButton();
         reservations = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         reservations_table2 = new javax.swing.JTable();
@@ -186,9 +188,7 @@ public class Container extends javax.swing.JFrame {
         errorRate = new javax.swing.JLabel();
 
         resolve.setTitle("Resolve Issue");
-        resolve.setMaximumSize(new java.awt.Dimension(500, 350));
         resolve.setMinimumSize(new java.awt.Dimension(500, 350));
-        resolve.setPreferredSize(new java.awt.Dimension(500, 350));
         resolve.setType(java.awt.Window.Type.POPUP);
 
         resolve_resolve_panel.setBackground(new java.awt.Color(255, 255, 255));
@@ -458,9 +458,7 @@ public class Container extends javax.swing.JFrame {
         );
 
         roomedit.setTitle("Resolve Issue");
-        roomedit.setMaximumSize(new java.awt.Dimension(500, 350));
         roomedit.setMinimumSize(new java.awt.Dimension(500, 350));
-        roomedit.setPreferredSize(new java.awt.Dimension(500, 350));
         roomedit.setType(java.awt.Window.Type.POPUP);
 
         resolve_resolve_panel1.setBackground(new java.awt.Color(255, 255, 255));
@@ -615,9 +613,9 @@ public class Container extends javax.swing.JFrame {
 
         menu.setTabPlacement(javax.swing.JTabbedPane.LEFT);
         menu.setFocusable(false);
-        menu.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                menuMouseClicked(evt);
+        menu.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                menuStateChanged(evt);
             }
         });
 
@@ -720,6 +718,13 @@ public class Container extends javax.swing.JFrame {
 
         DateEnd.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
 
+        ValiBtn.setText("Validate");
+        ValiBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ValiBtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout newReservationLayout = new javax.swing.GroupLayout(newReservation);
         newReservation.setLayout(newReservationLayout);
         newReservationLayout.setHorizontalGroup(
@@ -730,9 +735,12 @@ public class Container extends javax.swing.JFrame {
                     .addComponent(DateStart, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(pax)
                     .addComponent(confirm, javax.swing.GroupLayout.DEFAULT_SIZE, 480, Short.MAX_VALUE)
-                    .addComponent(room, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(guestName, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(DateEnd, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(DateEnd, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, newReservationLayout.createSequentialGroup()
+                        .addComponent(room, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(ValiBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGap(135, 135, 135))
         );
         newReservationLayout.setVerticalGroup(
@@ -743,7 +751,9 @@ public class Container extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(pax, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(room, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(newReservationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(room, javax.swing.GroupLayout.DEFAULT_SIZE, 43, Short.MAX_VALUE)
+                    .addComponent(ValiBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
                 .addComponent(DateStart, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -1042,121 +1052,6 @@ public class Container extends javax.swing.JFrame {
         }
     }
   
-    private void menuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_menuMouseClicked
-        String tabname = menu.getTitleAt(menu.getSelectedIndex());
-        DBConnect db = new DBConnect();
-        DefaultTableModel model = null;
-        String vacancy = "";
-        switch(tabname){
-            case "Rooms": 
-                    rs = DBConnect.getResultSet("SELECT * FROM room INNER JOIN reservations ON room.roomid = reservations.roomid INNER JOIN guest ON reservations.guestid = guest.guestid");
-                    rs2 = DBConnect.getResultSet("SELECT * FROM room");
-                    model = (DefaultTableModel) rooms_table1.getModel();
-                    model.setRowCount(0);
-                    {
-                        try {
-                            while(rs.next()){
-                                model.addRow(new Object[]{
-                                    rs.getString("roomName"),
-                                    vacancy = (rs.getBoolean("roomVacancy") == true)? "Vacant" : "Occupied",
-                                    rs.getString("guestName"),
-                                });
-                            }
-                            while(rs2.next()){
-                                if(rs2.getBoolean("roomVacancy")){
-                                    model.addRow(new Object[]{
-                                        rs2.getString("roomName"),
-                                        vacancy = (rs2.getBoolean("roomVacancy") == true)? "Vacant" : "Occupied",
-                                        null,
-                                    });
-                                }
-                            }
-                        } catch (SQLException ex) {
-                            Logger.getLogger(Container.class.getName()).log(Level.SEVERE, null, ex);
-                        }
-                    }
-                    rooms_table1.addMouseListener(new MouseAdapter() {
-                        public void mousePressed(MouseEvent mouseEvent) {
-                            JTable table =(JTable) mouseEvent.getSource();
-                            Point point = mouseEvent.getPoint();
-                            int row = table.rowAtPoint(point);
-                            int col = table.columnAtPoint(point);
-
-                            if (mouseEvent.getClickCount() == 2 ) {
-                                roomedit.setVisible(true);
-                            }
-                        }
-                    });
-                    break;
-            case "Reservations":
-                    rs = DBConnect.getResultSet("SELECT * FROM room INNER JOIN reservations ON room.roomid = reservations.roomid INNER JOIN guest ON reservations.guestid = guest.guestid");
-                    model = (DefaultTableModel) reservations_table2.getModel();
-                    model.setRowCount(0);
-                    {
-                        try {
-                            while(rs.next()){
-                                model.addRow(new Object[]{
-                                    rs.getString("roomName"),
-                                    rs.getDate("checkInDate"),
-                                    rs.getDate("checkOutDate"),
-                                    rs.getString("guestName")
-                                });
-                            }
-                        } catch (SQLException ex) {
-                            Logger.getLogger(Container.class.getName()).log(Level.SEVERE, null, ex);
-                        }
-                    }
-                    reservations_table2.addMouseListener(new MouseAdapter() {
-                        public void mousePressed(MouseEvent mouseEvent) {
-                            JTable table =(JTable) mouseEvent.getSource();
-                            Point point = mouseEvent.getPoint();
-                            int row = table.rowAtPoint(point);
-                            int col = table.columnAtPoint(point);
-
-                            if (mouseEvent.getClickCount() == 2 ) {
-                                JOptionPane.showMessageDialog(rootPane,"PopUp");
-                            }
-                        }
-                    });
-                    break;
-            case "To Do List": 
-                    initToDoTable();
-                    break;
-            case "New Issue":
-                    rs = DBConnect.getResultSet("SELECT * FROM room");
-                    DefaultComboBoxModel combo = (DefaultComboBoxModel) room_newIssue.getModel();
-                    combo.removeAllElements();
-                    room_newIssue.setModel(combo);
-                    {
-                        try {
-                            while(rs.next()){
-                                room_newIssue.addItem(rs.getString("roomName"));
-                            }
-                        } catch (SQLException ex) {
-                            Logger.getLogger(Container.class.getName()).log(Level.SEVERE, null, ex);
-                        }
-                    }
-            case "New Reservation":
-                    rs = DBConnect.getResultSet("SELECT * FROM room");
-                    DefaultComboBoxModel cmodel = (DefaultComboBoxModel) room.getModel();
-                    cmodel.removeAllElements();
-                    room.setModel(cmodel);
-                    {
-                        try {
-                            while(rs.next()){
-                                if(rs.getBoolean("roomVacancy")){
-                                    room.addItem(rs.getString("roomName"));
-                                }
-                            }
-                        } catch (SQLException ex) {
-                            Logger.getLogger(Container.class.getName()).log(Level.SEVERE, null, ex);
-                        }
-                    }
-            default: break;
-        }
-        
-    }//GEN-LAST:event_menuMouseClicked
-
     private void confirm_newRoomMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_confirm_newRoomMouseClicked
         String roomname = roomName.getText();
         Integer roomcapacity = 0;
@@ -1349,6 +1244,162 @@ public class Container extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_username1ActionPerformed
 
+    private void ValiBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ValiBtnActionPerformed
+        // TODO add your handling code here:
+        String roomName = room.getSelectedItem().toString();
+         ArrayList<Date> dt = new ArrayList();
+        int roomID = 0;
+        rs2 = DBConnect.getResultSet("SELECT (room.roomId) FROM room WHERE room.roomName LIKE '"+roomName+"'");
+        try {
+            if(rs2.next()){
+                roomID = rs2.getInt("roomId");
+            }
+            rs = DBConnect.getResultSet("SELECT reservations.checkInDate, reservations.checkOutDate FROM reservations INNER JOIN room ON room.roomId = reservations.roomId WHERE room.roomId = "+roomID+"");
+            while(rs.next()){
+               
+
+                Date currdat = rs.getDate("checkInDate");
+                Calendar c = Calendar.getInstance();
+                c.setTime(currdat);
+                c.add(Calendar.DATE, 0);
+                dt.add(c.getTime());
+                int daysdiff = 0;
+                long diff = rs.getDate("checkOutDate").getTime() - rs.getDate("checkInDate").getTime();
+                long diffDays = diff / (24 * 60 * 60 * 1000) + 1;
+                daysdiff = (int) diffDays;
+                for(int x = 0; x < daysdiff; x++){
+                    dt.add(c.getTime());
+                    c.setTime(currdat);
+                    c.add(Calendar.DATE, 1);
+                    currdat = c.getTime();
+
+                }
+                Date[] dat = dt.toArray(new Date[dt.size()]);
+                DateStart.getMonthView().setUnselectableDates(dat);
+                DateEnd.getMonthView().setUnselectableDates(dat);
+                DateEnd.getMonthView().setLowerBound(DateStart.getDate());
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Container.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }//GEN-LAST:event_ValiBtnActionPerformed
+
+    private void menuStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_menuStateChanged
+        // TODO add your handling code here:
+        String tabname = menu.getTitleAt(menu.getSelectedIndex());
+        DBConnect db = new DBConnect();
+        DefaultTableModel model = null;
+        String vacancy = "";
+        switch(tabname){
+            case "Rooms": 
+                    rs = DBConnect.getResultSet("SELECT * FROM room INNER JOIN reservations ON room.roomid = reservations.roomid INNER JOIN guest ON reservations.guestid = guest.guestid");
+                    rs2 = DBConnect.getResultSet("SELECT * FROM room");
+                    model = (DefaultTableModel) rooms_table1.getModel();
+                    model.setRowCount(0);
+                    {
+                        try {
+                            while(rs.next()){
+                                model.addRow(new Object[]{
+                                    rs.getString("roomName"),
+                                    vacancy = (rs.getBoolean("roomVacancy") == true)? "Vacant" : "Occupied",
+                                    rs.getString("guestName"),
+                                });
+                            }
+                            while(rs2.next()){
+                                if(rs2.getBoolean("roomVacancy")){
+                                    model.addRow(new Object[]{
+                                        rs2.getString("roomName"),
+                                        vacancy = (rs2.getBoolean("roomVacancy") == true)? "Vacant" : "Occupied",
+                                        null,
+                                    });
+                                }
+                            }
+                        } catch (SQLException ex) {
+                            Logger.getLogger(Container.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                    }
+                    rooms_table1.addMouseListener(new MouseAdapter() {
+                        public void mousePressed(MouseEvent mouseEvent) {
+                            JTable table =(JTable) mouseEvent.getSource();
+                            Point point = mouseEvent.getPoint();
+                            int row = table.rowAtPoint(point);
+                            int col = table.columnAtPoint(point);
+
+                            if (mouseEvent.getClickCount() == 2 ) {
+                                roomedit.setVisible(true);
+                            }
+                        }
+                    });
+                    break;
+            case "Reservations":
+                    rs = DBConnect.getResultSet("SELECT * FROM room INNER JOIN reservations ON room.roomid = reservations.roomid INNER JOIN guest ON reservations.guestid = guest.guestid");
+                    model = (DefaultTableModel) reservations_table2.getModel();
+                    model.setRowCount(0);
+                    {
+                        try {
+                            while(rs.next()){
+                                model.addRow(new Object[]{
+                                    rs.getString("roomName"),
+                                    rs.getDate("checkInDate"),
+                                    rs.getDate("checkOutDate"),
+                                    rs.getString("guestName")
+                                });
+                            }
+                        } catch (SQLException ex) {
+                            Logger.getLogger(Container.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                    }
+                    reservations_table2.addMouseListener(new MouseAdapter() {
+                        public void mousePressed(MouseEvent mouseEvent) {
+                            JTable table =(JTable) mouseEvent.getSource();
+                            Point point = mouseEvent.getPoint();
+                            int row = table.rowAtPoint(point);
+                            int col = table.columnAtPoint(point);
+
+                            if (mouseEvent.getClickCount() == 2 ) {
+                                JOptionPane.showMessageDialog(rootPane,"PopUp");
+                            }
+                        }
+                    });
+                    break;
+            case "To Do List": 
+                    initToDoTable();
+                    break;
+            case "New Issue":
+                    rs = DBConnect.getResultSet("SELECT * FROM room");
+                    DefaultComboBoxModel combo = (DefaultComboBoxModel) room_newIssue.getModel();
+                    combo.removeAllElements();
+                    room_newIssue.setModel(combo);
+                    {
+                        try {
+                            while(rs.next()){
+                                room_newIssue.addItem(rs.getString("roomName"));
+                            }
+                        } catch (SQLException ex) {
+                            Logger.getLogger(Container.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                    }
+            case "New Reservation":
+                    rs = DBConnect.getResultSet("SELECT * FROM room");
+                    DefaultComboBoxModel cmodel = (DefaultComboBoxModel) room.getModel();
+                    cmodel.removeAllElements();
+                    room.setModel(cmodel);
+                    {
+                        try {
+                            while(rs.next()){
+                                if(rs.getBoolean("roomVacancy")){
+                                    room.addItem(rs.getString("roomName"));
+                                }
+                            }
+                        } catch (SQLException ex) {
+                            Logger.getLogger(Container.class.getName()).log(Level.SEVERE, null, ex);
+                        }
+                    }
+            default: break;
+        }
+        
+    }//GEN-LAST:event_menuStateChanged
+
     public void open() {
 
         try {
@@ -1370,6 +1421,7 @@ public class Container extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private org.jdesktop.swingx.JXDatePicker DateEnd;
     private org.jdesktop.swingx.JXDatePicker DateStart;
+    private javax.swing.JButton ValiBtn;
     private javax.swing.JButton cancel_resolve;
     private javax.swing.JButton cancel_resolve1;
     private javax.swing.JLabel checkout;
