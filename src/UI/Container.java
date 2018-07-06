@@ -156,6 +156,7 @@ public class Container extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         room_edit_capacity = new javax.swing.JTextArea();
+        OccupiedBtn = new javax.swing.JRadioButton();
         jPanel1 = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
         username = new javax.swing.JLabel();
@@ -524,6 +525,13 @@ public class Container extends javax.swing.JFrame {
         room_edit_capacity.setRows(5);
         room_edit_capacity.setToolTipText("Room Rate");
 
+        OccupiedBtn.setText("Occupied");
+        OccupiedBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                OccupiedBtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout resolve_resolve_panel1Layout = new javax.swing.GroupLayout(resolve_resolve_panel1);
         resolve_resolve_panel1.setLayout(resolve_resolve_panel1Layout);
         resolve_resolve_panel1Layout.setHorizontalGroup(
@@ -537,15 +545,15 @@ public class Container extends javax.swing.JFrame {
                         .addComponent(room_edit_capacity, javax.swing.GroupLayout.PREFERRED_SIZE, 473, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(resolve_resolve_panel1Layout.createSequentialGroup()
                         .addGroup(resolve_resolve_panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(resolve_resolve_panel1Layout.createSequentialGroup()
-                                .addComponent(cancel_resolve1)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(confirm_resolve1))
-                            .addComponent(jLabel1))
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel2))
                         .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(resolve_resolve_panel1Layout.createSequentialGroup()
-                        .addComponent(jLabel2)
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addComponent(cancel_resolve1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(confirm_resolve1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(OccupiedBtn)))
                 .addContainerGap())
             .addGroup(resolve_resolve_panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, resolve_resolve_panel1Layout.createSequentialGroup()
@@ -566,7 +574,8 @@ public class Container extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(resolve_resolve_panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(confirm_resolve1)
-                    .addComponent(cancel_resolve1))
+                    .addComponent(cancel_resolve1)
+                    .addComponent(OccupiedBtn))
                 .addContainerGap())
             .addGroup(resolve_resolve_panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, resolve_resolve_panel1Layout.createSequentialGroup()
@@ -1386,6 +1395,11 @@ public class Container extends javax.swing.JFrame {
                                         room_edit_name.setText(rs2.getString("roomName"));
                                         room_edit_rate.setText(Float.toString(rs2.getFloat("roomRate")));
                                         room_edit_capacity.setText(Integer.toString(rs2.getInt("roomCapacity")));
+                                        if(rs2.getBoolean("roomVacancy") == true){
+                                            OccupiedBtn.setSelected(false);
+                                        }else{
+                                            OccupiedBtn.setSelected(true);
+                                        }
                                     }
                                 } catch (SQLException ex) {
                                     Logger.getLogger(Container.class.getName()).log(Level.SEVERE, null, ex);
@@ -1473,6 +1487,42 @@ public class Container extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_roomActionPerformed
 
+    private void OccupiedBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_OccupiedBtnActionPerformed
+        // TODO add your handling code here:
+        Connection con = DBConnect.getConnection();
+        int roomID = 0;
+        Date currDate = new Date();
+        Calendar c = Calendar.getInstance(); 
+        c.setTime(currDate); 
+        c.add(Calendar.DATE, 1);
+        currDate = c.getTime();
+        java.sql.Date sqlDate = new java.sql.Date(currDate.getTime());
+        PreparedStatement stmt = null;
+        rs = DBConnect.getResultSet("SELECT room.roomId FROM room WHERE room.roomName LIKE '"+room_edit_name.getText()+"'");
+        try {
+            if(rs.next()){
+                roomID = rs.getInt("roomId");
+            }
+            String sql = "UPDATE room SET roomVacancy = ?, updatedBy = ?, updatedDate = ?  WHERE roomId = ?";
+           
+            stmt = con.prepareStatement(sql);
+            
+            stmt.setInt(2, Storage.ad.getAdminID());
+            stmt.setDate(3, sqlDate);
+            stmt.setInt(4, roomID);
+            if(OccupiedBtn.isSelected()){
+                stmt.setInt(1, 0);
+            }else{
+                stmt.setInt(1, 1);
+            }
+            stmt.executeUpdate();
+        } catch (SQLException ex) {
+            Logger.getLogger(Container.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        
+    }//GEN-LAST:event_OccupiedBtnActionPerformed
+
     public void open() {
 
         try {
@@ -1494,6 +1544,7 @@ public class Container extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private org.jdesktop.swingx.JXDatePicker DateEnd;
     private org.jdesktop.swingx.JXDatePicker DateStart;
+    private javax.swing.JRadioButton OccupiedBtn;
     private javax.swing.JButton ValiBtn;
     private javax.swing.JButton cancel_resolve;
     private javax.swing.JButton cancel_resolve1;
