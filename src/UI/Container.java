@@ -1188,6 +1188,26 @@ public class Container extends javax.swing.JFrame {
         java.sql.Date sqlDate = new java.sql.Date(currDate.getTime());
         java.sql.Date sqlDateStart = new java.sql.Date(DateStart.getDate().getTime());
         java.sql.Date sqlDateEnd = new java.sql.Date(DateEnd.getDate().getTime());
+        
+        String iquery = "INSERT INTO guest "
+            + "(`guestName`, `guestPax`, `guestPaid`, `createdBy`, `updatedBy`, `createdDate`, `updatedDate`) "
+            + "VALUES ( ?, ?, ?, ?, ?, ?, ?)";
+        
+        try {
+            PreparedStatement stmt;
+            stmt = con.prepareStatement(iquery);
+            stmt.setString(1, reserName);
+            stmt.setInt(2, Integer.parseInt(reserCount));
+            stmt.setInt(3, 1);
+            stmt.setInt(4, Storage.ad.getAdminID());
+            stmt.setInt(5, Storage.ad.getAdminID());
+            stmt.setDate(6, sqlDate);
+            stmt.setDate(7, sqlDate);
+            stmt.executeUpdate();
+        }catch (SQLException ex) {
+            Logger.getLogger(Container.class.getName()).log(Level.SEVERE, null, ex);
+        }
+         
         rs = DBConnect.getResultSet("SELECT (guest.guestId) FROM guest WHERE guest.guestName LIKE '"+reserName+"'");
         rs2 = DBConnect.getResultSet("SELECT (room.roomId) FROM room WHERE room.roomName LIKE '"+reserRoom+"'");
         String query = "INSERT INTO reservations "
