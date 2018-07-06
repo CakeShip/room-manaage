@@ -150,13 +150,15 @@ public class Container extends javax.swing.JFrame {
         resolve_resolve_panel1 = new javax.swing.JPanel();
         jPanel7 = new javax.swing.JPanel();
         room_edit_name = new javax.swing.JTextField();
-        confirm_resolve1 = new javax.swing.JButton();
-        cancel_resolve1 = new javax.swing.JButton();
-        room_edit_rate = new javax.swing.JTextArea();
         jLabel1 = new javax.swing.JLabel();
+        room_edit_rate = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         room_edit_capacity = new javax.swing.JTextArea();
         OccupiedBtn = new javax.swing.JRadioButton();
+        room_edit_capacity = new javax.swing.JTextField();
+        cancel_resolve1 = new javax.swing.JButton();
+        confirm_resolve1 = new javax.swing.JButton();
+        room_edit_id = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
         username = new javax.swing.JLabel();
@@ -473,6 +475,7 @@ public class Container extends javax.swing.JFrame {
         resolve_resolve_panel1.setBackground(new java.awt.Color(255, 255, 255));
 
         jPanel7.setBackground(new java.awt.Color(0, 204, 204));
+        jPanel7.setForeground(new java.awt.Color(255, 255, 255));
 
         room_edit_name.setBackground(new java.awt.Color(0, 204, 204));
         room_edit_name.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -482,27 +485,29 @@ public class Container extends javax.swing.JFrame {
         room_edit_name.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(255, 255, 255)));
         room_edit_name.setCaretColor(new java.awt.Color(255, 255, 255));
 
-        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
-        jPanel7.setLayout(jPanel7Layout);
-        jPanel7Layout.setHorizontalGroup(
-            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(room_edit_name, javax.swing.GroupLayout.Alignment.TRAILING)
-        );
-        jPanel7Layout.setVerticalGroup(
-            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
-                .addGap(0, 14, Short.MAX_VALUE)
-                .addComponent(room_edit_name, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel1.setText("Room Rate");
 
-        confirm_resolve1.setText("Confirm");
-        confirm_resolve1.setFocusable(false);
-        confirm_resolve1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                confirm_resolve1MouseClicked(evt);
-            }
-        });
+        room_edit_rate.setBackground(new java.awt.Color(0, 204, 204));
+        room_edit_rate.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        room_edit_rate.setForeground(new java.awt.Color(255, 255, 255));
+        room_edit_rate.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        room_edit_rate.setToolTipText("Username");
+        room_edit_rate.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(255, 255, 255)));
+        room_edit_rate.setCaretColor(new java.awt.Color(255, 255, 255));
 
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel2.setText("Room Capacity");
+
+        room_edit_capacity.setBackground(new java.awt.Color(0, 204, 204));
+        room_edit_capacity.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        room_edit_capacity.setForeground(new java.awt.Color(255, 255, 255));
+        room_edit_capacity.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        room_edit_capacity.setToolTipText("Username");
+        room_edit_capacity.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(255, 255, 255)));
+        room_edit_capacity.setCaretColor(new java.awt.Color(255, 255, 255));
+
+        cancel_resolve1.setBackground(new java.awt.Color(255, 153, 0));
         cancel_resolve1.setText("Cancel");
         cancel_resolve1.setFocusable(false);
         cancel_resolve1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -511,19 +516,62 @@ public class Container extends javax.swing.JFrame {
             }
         });
 
-        room_edit_rate.setColumns(20);
-        room_edit_rate.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
-        room_edit_rate.setRows(5);
-        room_edit_rate.setToolTipText("Room Rate");
+        confirm_resolve1.setBackground(new java.awt.Color(153, 255, 153));
+        confirm_resolve1.setText("Confirm");
+        confirm_resolve1.setFocusable(false);
+        confirm_resolve1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                confirm_resolve1MouseClicked(evt);
+            }
+        });
+        confirm_resolve1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                confirm_resolve1ActionPerformed(evt);
+            }
+        });
 
-        jLabel1.setText("Room Rate");
+        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
+        jPanel7.setLayout(jPanel7Layout);
+        jPanel7Layout.setHorizontalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(room_edit_name, javax.swing.GroupLayout.DEFAULT_SIZE, 515, Short.MAX_VALUE)
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(room_edit_rate, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 495, Short.MAX_VALUE)
+                    .addComponent(room_edit_capacity, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 495, Short.MAX_VALUE)
+                    .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel1)
+                            .addComponent(jLabel2)
+                            .addGroup(jPanel7Layout.createSequentialGroup()
+                                .addComponent(cancel_resolve1, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(29, 29, 29)
+                                .addComponent(confirm_resolve1, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
+        );
+        jPanel7Layout.setVerticalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel7Layout.createSequentialGroup()
+                .addGap(36, 36, 36)
+                .addComponent(room_edit_name, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel1)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(room_edit_rate, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(room_edit_capacity, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cancel_resolve1)
+                    .addComponent(confirm_resolve1))
+                .addContainerGap(45, Short.MAX_VALUE))
+        );
 
-        jLabel2.setText("Room Capacity");
-
-        room_edit_capacity.setColumns(20);
-        room_edit_capacity.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
-        room_edit_capacity.setRows(5);
-        room_edit_capacity.setToolTipText("Room Rate");
+        room_edit_id.setFont(new java.awt.Font("Tahoma", 0, 1)); // NOI18N
 
         OccupiedBtn.setText("Occupied");
         OccupiedBtn.addActionListener(new java.awt.event.ActionListener() {
@@ -556,10 +604,10 @@ public class Container extends javax.swing.JFrame {
                         .addComponent(OccupiedBtn)))
                 .addContainerGap())
             .addGroup(resolve_resolve_panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, resolve_resolve_panel1Layout.createSequentialGroup()
-                    .addContainerGap(11, Short.MAX_VALUE)
-                    .addComponent(room_edit_rate, javax.swing.GroupLayout.PREFERRED_SIZE, 473, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(11, Short.MAX_VALUE)))
+                .addGroup(resolve_resolve_panel1Layout.createSequentialGroup()
+                    .addGap(247, 247, 247)
+                    .addComponent(room_edit_id)
+                    .addContainerGap(248, Short.MAX_VALUE)))
         );
         resolve_resolve_panel1Layout.setVerticalGroup(
             resolve_resolve_panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -577,11 +625,12 @@ public class Container extends javax.swing.JFrame {
                     .addComponent(cancel_resolve1)
                     .addComponent(OccupiedBtn))
                 .addContainerGap())
+            .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(resolve_resolve_panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, resolve_resolve_panel1Layout.createSequentialGroup()
-                    .addContainerGap(85, Short.MAX_VALUE)
-                    .addComponent(room_edit_rate, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addContainerGap(131, Short.MAX_VALUE)))
+                .addGroup(resolve_resolve_panel1Layout.createSequentialGroup()
+                    .addGap(127, 127, 127)
+                    .addComponent(room_edit_id)
+                    .addContainerGap(141, Short.MAX_VALUE)))
         );
 
         javax.swing.GroupLayout roomeditLayout = new javax.swing.GroupLayout(roomedit.getContentPane());
@@ -589,16 +638,13 @@ public class Container extends javax.swing.JFrame {
         roomeditLayout.setHorizontalGroup(
             roomeditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(roomeditLayout.createSequentialGroup()
-                .addGap(0, 2, Short.MAX_VALUE)
-                .addComponent(resolve_resolve_panel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 3, Short.MAX_VALUE))
-        );
-        roomeditLayout.setVerticalGroup(
-            roomeditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(roomeditLayout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(resolve_resolve_panel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, Short.MAX_VALUE))
+        );
+        roomeditLayout.setVerticalGroup(
+            roomeditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(resolve_resolve_panel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -1157,8 +1203,14 @@ public class Container extends javax.swing.JFrame {
         if(JOptionPane.showConfirmDialog(rootPane, "Resolve Issue?")==0){
             Connection con = DBConnect.getConnection();
             int issueID = 0, found = 0;
+            Date currDate = new Date();
+            Calendar c = Calendar.getInstance(); 
+            c.setTime(currDate); 
+            c.add(Calendar.DATE, 1);
+            currDate = c.getTime();
+            java.sql.Date sqlDate = new java.sql.Date(currDate.getTime());
             String varnewIssue = (String)table.getValueAt(table.getSelectedRow(), 0);
-            String sql = "UPDATE todo SET status = ? WHERE todoId = ?";
+            String sql = "UPDATE todo SET status = ?, updatedBy = ?, updatedDate = ? WHERE todoId = ?";
             try {
                 PreparedStatement stmt = con.prepareStatement(sql);
                 rs2 = DBConnect.getResultSet("SELECT (todo.todoId) FROM todo WHERE todo.issueTitle LIKE '"+varnewIssue+"'");
@@ -1171,7 +1223,9 @@ public class Container extends javax.swing.JFrame {
                     Logger.getLogger(Container.class.getName()).log(Level.SEVERE, null, ex);
                 }
                 stmt.setInt(1, found);
-                stmt.setInt(2, issueID);
+                stmt.setInt(2, Storage.ad.getAdminID());
+                stmt.setDate(3, sqlDate);
+                stmt.setInt(4, issueID);
                 stmt.executeUpdate();
                 resolve.setVisible(false);
                 initToDoTable();
@@ -1252,7 +1306,7 @@ public class Container extends javax.swing.JFrame {
         
         String varnewIssue = resolve_edit_room.getItemAt(resolve_edit_room.getSelectedIndex());
         int roomid = 0;
-        rs2 = DBConnect.getResultSet("SELECT (room.roomId) FROM room WHERE room.roomName LIKE '"+varnewIssue+"'");
+        rs2 = DBConnect.getResultSet("SELECT * FROM room WHERE roomName LIKE '"+varnewIssue+"'");
         try {
             if(rs2.next()){
                 roomid = rs2.getInt("roomId");
@@ -1295,11 +1349,57 @@ public class Container extends javax.swing.JFrame {
     }//GEN-LAST:event_resolve_edit_roomActionPerformed
 
     private void confirm_resolve1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_confirm_resolve1MouseClicked
-        // TODO add your handling code here:
+        int roomcap = 0;
+        float roomrate = 0;
+        String roomname = room_edit_name.getText();
+        int roomid = Integer.parseInt(room_edit_id.getText());      
+        try{
+            roomcap = Integer.parseInt(room_edit_capacity.getText());
+        }catch(Exception e){
+            System.out.println(e);
+        }
+        
+        try{
+            roomrate = Float.parseFloat(room_edit_rate.getText());
+        }catch(Exception e){
+            System.out.println(e);
+        }
+        
+        if(roomcap > 0 && roomrate > 0 && !roomname.isEmpty()){
+            Connection con = DBConnect.getConnection();
+            Date currDate = new Date();
+            Calendar c = Calendar.getInstance(); 
+            c.setTime(currDate); 
+            c.add(Calendar.DATE, 1);
+            currDate = c.getTime();
+            java.sql.Date sqlDate = new java.sql.Date(currDate.getTime());
+            String sql = "UPDATE room SET roomName = ?, roomCapacity = ?, roomRate = ?, updatedBy = ?, updatedDate = ? WHERE roomId = ?";
+            try {
+                PreparedStatement stmt = con.prepareStatement(sql);
+                stmt.setString(1, roomname);
+                stmt.setInt(2, roomcap);
+                stmt.setFloat(3, roomrate);
+                stmt.setInt(4, Storage.ad.getAdminID());
+                stmt.setDate(5, sqlDate);
+                stmt.setInt(6, roomid);
+                stmt.executeUpdate();
+                room_edit_rate.setText("");
+                room_edit_name.setText("");
+                room_edit_capacity.setText("");
+                initToDoTable();
+                JOptionPane.showMessageDialog(rootPane, "Successfully Updated Room");
+                roomedit.setVisible(false);
+                initToDoTable();
+            } catch (SQLException ex) {
+                Logger.getLogger(Container.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+        }
+        
     }//GEN-LAST:event_confirm_resolve1MouseClicked
 
     private void cancel_resolve1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancel_resolve1MouseClicked
-        // TODO add your handling code here:
+        roomedit.setVisible(false);
     }//GEN-LAST:event_cancel_resolve1MouseClicked
 
     private void username1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_username1ActionPerformed
@@ -1400,6 +1500,7 @@ public class Container extends javax.swing.JFrame {
                                         }else{
                                             OccupiedBtn.setSelected(true);
                                         }
+                                        room_edit_id.setText(Integer.toString(rs2.getInt("roomId")));
                                     }
                                 } catch (SQLException ex) {
                                     Logger.getLogger(Container.class.getName()).log(Level.SEVERE, null, ex);
@@ -1435,7 +1536,6 @@ public class Container extends javax.swing.JFrame {
                             int col = table.columnAtPoint(point);
 
                             if (mouseEvent.getClickCount() == 2 ) {
-                                JOptionPane.showMessageDialog(rootPane,"PopUp");
                             }
                         }
                     });
@@ -1522,6 +1622,9 @@ public class Container extends javax.swing.JFrame {
         
         
     }//GEN-LAST:event_OccupiedBtnActionPerformed
+    private void confirm_resolve1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirm_resolve1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_confirm_resolve1ActionPerformed
 
     public void open() {
 
@@ -1607,9 +1710,10 @@ public class Container extends javax.swing.JFrame {
     private javax.swing.JTextField roomCapacity;
     private javax.swing.JTextField roomName;
     private javax.swing.JTextField roomRate;
-    private javax.swing.JTextArea room_edit_capacity;
+    private javax.swing.JTextField room_edit_capacity;
+    private javax.swing.JLabel room_edit_id;
     private javax.swing.JTextField room_edit_name;
-    private javax.swing.JTextArea room_edit_rate;
+    private javax.swing.JTextField room_edit_rate;
     private javax.swing.JLabel room_name;
     private javax.swing.JComboBox<String> room_newIssue;
     private javax.swing.JDialog roomedit;
