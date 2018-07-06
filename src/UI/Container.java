@@ -139,6 +139,14 @@ public class Container extends javax.swing.JFrame {
         pait_guest = new javax.swing.JToggleButton();
         pax_guest = new javax.swing.JLabel();
         checkout = new javax.swing.JLabel();
+        roomedit = new javax.swing.JDialog();
+        resolve_resolve_panel1 = new javax.swing.JPanel();
+        jPanel7 = new javax.swing.JPanel();
+        username1 = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        confirm_resolve1 = new javax.swing.JButton();
+        cancel_resolve1 = new javax.swing.JButton();
+        room_edit_rate = new javax.swing.JTextArea();
         jPanel1 = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
         username = new javax.swing.JLabel();
@@ -447,6 +455,120 @@ public class Container extends javax.swing.JFrame {
         guestLayout.setVerticalGroup(
             guestLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
+        roomedit.setTitle("Resolve Issue");
+        roomedit.setMaximumSize(new java.awt.Dimension(500, 350));
+        roomedit.setMinimumSize(new java.awt.Dimension(500, 350));
+        roomedit.setPreferredSize(new java.awt.Dimension(500, 350));
+        roomedit.setType(java.awt.Window.Type.POPUP);
+
+        resolve_resolve_panel1.setBackground(new java.awt.Color(255, 255, 255));
+
+        jPanel7.setBackground(new java.awt.Color(0, 204, 204));
+
+        username1.setBackground(new java.awt.Color(0, 204, 204));
+        username1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        username1.setForeground(new java.awt.Color(255, 255, 255));
+        username1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        username1.setToolTipText("Username");
+        username1.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(255, 255, 255)));
+        username1.setCaretColor(new java.awt.Color(255, 255, 255));
+        username1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                username1ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
+        jPanel7.setLayout(jPanel7Layout);
+        jPanel7Layout.setHorizontalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(username1, javax.swing.GroupLayout.Alignment.TRAILING)
+        );
+        jPanel7Layout.setVerticalGroup(
+            jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(username1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 57, Short.MAX_VALUE)
+        );
+
+        jLabel4.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel4.setText("Mark as resolved?");
+
+        confirm_resolve1.setText("Confirm");
+        confirm_resolve1.setFocusable(false);
+        confirm_resolve1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                confirm_resolve1MouseClicked(evt);
+            }
+        });
+
+        cancel_resolve1.setText("Cancel");
+        cancel_resolve1.setFocusable(false);
+        cancel_resolve1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cancel_resolve1MouseClicked(evt);
+            }
+        });
+
+        room_edit_rate.setColumns(20);
+        room_edit_rate.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
+        room_edit_rate.setRows(5);
+        room_edit_rate.setToolTipText("Room Rate");
+
+        javax.swing.GroupLayout resolve_resolve_panel1Layout = new javax.swing.GroupLayout(resolve_resolve_panel1);
+        resolve_resolve_panel1.setLayout(resolve_resolve_panel1Layout);
+        resolve_resolve_panel1Layout.setHorizontalGroup(
+            resolve_resolve_panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(resolve_resolve_panel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(resolve_resolve_panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(resolve_resolve_panel1Layout.createSequentialGroup()
+                        .addComponent(cancel_resolve1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(confirm_resolve1)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 475, Short.MAX_VALUE))
+                .addContainerGap())
+            .addGroup(resolve_resolve_panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(resolve_resolve_panel1Layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(room_edit_rate, javax.swing.GroupLayout.PREFERRED_SIZE, 473, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+        resolve_resolve_panel1Layout.setVerticalGroup(
+            resolve_resolve_panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(resolve_resolve_panel1Layout.createSequentialGroup()
+                .addComponent(jPanel7, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(135, 135, 135)
+                .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(resolve_resolve_panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(confirm_resolve1)
+                    .addComponent(cancel_resolve1))
+                .addContainerGap())
+            .addGroup(resolve_resolve_panel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(resolve_resolve_panel1Layout.createSequentialGroup()
+                    .addGap(0, 0, Short.MAX_VALUE)
+                    .addComponent(room_edit_rate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGap(0, 0, Short.MAX_VALUE)))
+        );
+
+        javax.swing.GroupLayout roomeditLayout = new javax.swing.GroupLayout(roomedit.getContentPane());
+        roomedit.getContentPane().setLayout(roomeditLayout);
+        roomeditLayout.setHorizontalGroup(
+            roomeditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(roomeditLayout.createSequentialGroup()
+                .addGap(0, 2, Short.MAX_VALUE)
+                .addComponent(resolve_resolve_panel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 3, Short.MAX_VALUE))
+        );
+        roomeditLayout.setVerticalGroup(
+            roomeditLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(roomeditLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(resolve_resolve_panel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -961,7 +1083,7 @@ public class Container extends javax.swing.JFrame {
                             int col = table.columnAtPoint(point);
 
                             if (mouseEvent.getClickCount() == 2 ) {
-                                JOptionPane.showMessageDialog(rootPane,"PopUp");
+                                roomedit.setVisible(true);
                             }
                         }
                     });
@@ -1215,6 +1337,18 @@ public class Container extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_resolve_edit_roomActionPerformed
 
+    private void confirm_resolve1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_confirm_resolve1MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_confirm_resolve1MouseClicked
+
+    private void cancel_resolve1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cancel_resolve1MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cancel_resolve1MouseClicked
+
+    private void username1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_username1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_username1ActionPerformed
+
     public void open() {
 
         try {
@@ -1237,11 +1371,13 @@ public class Container extends javax.swing.JFrame {
     private org.jdesktop.swingx.JXDatePicker DateEnd;
     private org.jdesktop.swingx.JXDatePicker DateStart;
     private javax.swing.JButton cancel_resolve;
+    private javax.swing.JButton cancel_resolve1;
     private javax.swing.JLabel checkout;
     private javax.swing.JButton confirm;
     private javax.swing.JButton confirm_newIssue;
     private javax.swing.JButton confirm_newRoom;
     private javax.swing.JButton confirm_resolve;
+    private javax.swing.JButton confirm_resolve1;
     private javax.swing.JButton delete_guest;
     private javax.swing.JLabel errorCapacity;
     private javax.swing.JLabel errorName;
@@ -1256,11 +1392,13 @@ public class Container extends javax.swing.JFrame {
     private javax.swing.JLabel issue_name;
     private javax.swing.JLabel issue_name1;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
+    private javax.swing.JPanel jPanel7;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
@@ -1287,16 +1425,20 @@ public class Container extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> resolve_edit_room;
     private javax.swing.JTextField resolve_edit_title;
     private javax.swing.JPanel resolve_resolve_panel;
+    private javax.swing.JPanel resolve_resolve_panel1;
     private javax.swing.JComboBox<String> room;
     private javax.swing.JTextField roomCapacity;
     private javax.swing.JTextField roomName;
     private javax.swing.JTextField roomRate;
+    private javax.swing.JTextArea room_edit_rate;
     private javax.swing.JLabel room_name;
     private javax.swing.JComboBox<String> room_newIssue;
+    private javax.swing.JDialog roomedit;
     private javax.swing.JPanel rooms;
     private javax.swing.JTable rooms_table1;
     private javax.swing.JPanel toDo;
     private javax.swing.JTable toDo_table;
     private javax.swing.JLabel username;
+    private javax.swing.JTextField username1;
     // End of variables declaration//GEN-END:variables
 }
