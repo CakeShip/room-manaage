@@ -1465,9 +1465,7 @@ public class Container extends javax.swing.JFrame {
                     {
                         try {
                             while(rs.next()){
-                                if(rs.getBoolean("roomVacancy")){
-                                    room.addItem(rs.getString("roomName"));
-                                }
+                                room.addItem(rs.getString("roomName"));
                             }
                         } catch (SQLException ex) {
                             Logger.getLogger(Container.class.getName()).log(Level.SEVERE, null, ex);
