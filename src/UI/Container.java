@@ -177,6 +177,10 @@ public class Container extends javax.swing.JFrame {
         DateStart = new org.jdesktop.swingx.JXDatePicker();
         DateEnd = new org.jdesktop.swingx.JXDatePicker();
         ValiBtn = new javax.swing.JButton();
+        reserrorname = new javax.swing.JLabel();
+        resererrorpax = new javax.swing.JLabel();
+        resererrorend = new javax.swing.JLabel();
+        resererrorstart = new javax.swing.JLabel();
         reservations = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         reservations_table2 = new javax.swing.JTable();
@@ -767,6 +771,22 @@ public class Container extends javax.swing.JFrame {
             }
         });
 
+        reserrorname.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
+        reserrorname.setForeground(new java.awt.Color(255, 153, 102));
+        reserrorname.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+
+        resererrorpax.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
+        resererrorpax.setForeground(new java.awt.Color(255, 153, 102));
+        resererrorpax.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+
+        resererrorend.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
+        resererrorend.setForeground(new java.awt.Color(255, 153, 102));
+        resererrorend.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+
+        resererrorstart.setFont(new java.awt.Font("Tahoma", 1, 36)); // NOI18N
+        resererrorstart.setForeground(new java.awt.Color(255, 153, 102));
+        resererrorstart.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+
         javax.swing.GroupLayout newReservationLayout = new javax.swing.GroupLayout(newReservation);
         newReservation.setLayout(newReservationLayout);
         newReservationLayout.setHorizontalGroup(
@@ -783,26 +803,42 @@ public class Container extends javax.swing.JFrame {
                         .addComponent(room, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(ValiBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addGap(135, 135, 135))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(newReservationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(reserrorname, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(resererrorpax, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(resererrorstart, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(resererrorend, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(81, 81, 81))
         );
         newReservationLayout.setVerticalGroup(
             newReservationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(newReservationLayout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(guestName, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(newReservationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(guestName, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(reserrorname, javax.swing.GroupLayout.DEFAULT_SIZE, 47, Short.MAX_VALUE))
                 .addGap(18, 18, 18)
-                .addComponent(pax, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGroup(newReservationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(pax, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(resererrorpax, javax.swing.GroupLayout.DEFAULT_SIZE, 47, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(newReservationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(room, javax.swing.GroupLayout.DEFAULT_SIZE, 43, Short.MAX_VALUE)
                     .addComponent(ValiBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addGap(18, 18, 18)
-                .addComponent(DateStart, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(DateEnd, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(newReservationLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(newReservationLayout.createSequentialGroup()
+                        .addComponent(DateStart, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addComponent(DateEnd, javax.swing.GroupLayout.PREFERRED_SIZE, 38, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(newReservationLayout.createSequentialGroup()
+                        .addComponent(resererrorstart, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGap(18, 18, 18)
+                        .addComponent(resererrorend, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGap(28, 28, 28)
                 .addComponent(confirm, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(24, Short.MAX_VALUE))
+                .addContainerGap(40, Short.MAX_VALUE))
         );
 
         menu.addTab("New Reservation", newReservation);
@@ -1198,60 +1234,99 @@ public class Container extends javax.swing.JFrame {
         String reserName = guestName.getText(),
                reserCount = pax.getText(),
                reserRoom = room.getItemAt(room.getSelectedIndex());
+        int count = 0;
+        try {
+            count = Integer.parseInt(reserCount);
+        } catch(Exception e){
+            System.out.println(e);
+        }
         int guestID = 0,
             roomID = 0;
         Connection con = DBConnect.getConnection();
         Date currDate = new Date();
+        java.sql.Date sqlDateStart = null;
+        java.sql.Date sqlDateEnd = null;
         java.sql.Date sqlDate = new java.sql.Date(currDate.getTime());
-        java.sql.Date sqlDateStart = new java.sql.Date(DateStart.getDate().getTime());
-        java.sql.Date sqlDateEnd = new java.sql.Date(DateEnd.getDate().getTime());
-        
-        String iquery = "INSERT INTO guest "
-            + "(`guestName`, `guestPax`, `guestPaid`, `createdBy`, `updatedBy`, `createdDate`, `updatedDate`) "
-            + "VALUES ( ?, ?, ?, ?, ?, ?, ?)";
-        
-        try {
-            PreparedStatement stmt;
-            stmt = con.prepareStatement(iquery);
-            stmt.setString(1, reserName);
-            stmt.setInt(2, Integer.parseInt(reserCount));
-            stmt.setInt(3, 1);
-            stmt.setInt(4, Storage.ad.getAdminID());
-            stmt.setInt(5, Storage.ad.getAdminID());
-            stmt.setDate(6, sqlDate);
-            stmt.setDate(7, sqlDate);
-            stmt.executeUpdate();
-        }catch (SQLException ex) {
-            Logger.getLogger(Container.class.getName()).log(Level.SEVERE, null, ex);
-        }
-         
-        rs = DBConnect.getResultSet("SELECT (guest.guestId) FROM guest WHERE guest.guestName LIKE '"+reserName+"'");
-        rs2 = DBConnect.getResultSet("SELECT (room.roomId) FROM room WHERE room.roomName LIKE '"+reserRoom+"'");
-        String query = "INSERT INTO reservations "
-            + "(`guestId`, `roomId`, `createdBy`, `updatedBy`, `checkInDate`, `checkOutDate`, `createdDate`, `updatedDate`) "
-            + "VALUES ( ?, ?, ?, ?, ?, ?, ?, ?)";
         try{
-            if(rs.next() && rs2.next()){
-                guestID = rs.getInt("guestId");
-                roomID = rs2.getInt("roomId");
-            }
-            PreparedStatement stmt = con.prepareStatement(query);
-            stmt.setInt(1, guestID);
-            stmt.setInt(2, roomID);
-            stmt.setInt(3, Storage.ad.getAdminID());
-            stmt.setInt(4, Storage.ad.getAdminID());
-            stmt.setDate(5, sqlDateStart);
-            stmt.setDate(6, sqlDateEnd);
-            stmt.setDate(7, sqlDate);
-            stmt.setDate(8, sqlDate);
-            
-//            ustmt.executeUpdate();
-            int insert = stmt.executeUpdate();
-            System.out.println("Inserted "+insert+" rows.");
-        }catch(SQLException ex){
-            System.out.println(ex);
+            sqlDateStart = new java.sql.Date(DateStart.getDate().getTime());
+            sqlDateEnd = new java.sql.Date(DateEnd.getDate().getTime());
+        } catch(Exception e){
+            System.out.println(e);
         }
         
+        if(!reserName.isEmpty() && !reserCount.isEmpty()  && count >  0 && sqlDateEnd != null && sqlDateStart != null){
+            String iquery = "INSERT INTO guest "
+                + "(`guestName`, `guestPax`, `guestPaid`, `createdBy`, `updatedBy`, `createdDate`, `updatedDate`) "
+                + "VALUES ( ?, ?, ?, ?, ?, ?, ?)";
+
+            try {
+                PreparedStatement stmt;
+                stmt = con.prepareStatement(iquery);
+                stmt.setString(1, reserName);
+                stmt.setInt(2, Integer.parseInt(reserCount));
+                stmt.setInt(3, 1);
+                stmt.setInt(4, Storage.ad.getAdminID());
+                stmt.setInt(5, Storage.ad.getAdminID());
+                stmt.setDate(6, sqlDate);
+                stmt.setDate(7, sqlDate);
+                stmt.executeUpdate();
+                JOptionPane.showMessageDialog(rootPane, "Successful Reservation");
+            }catch (SQLException ex) {
+                Logger.getLogger(Container.class.getName()).log(Level.SEVERE, null, ex);
+            }
+
+            rs = DBConnect.getResultSet("SELECT (guest.guestId) FROM guest WHERE guest.guestName LIKE '"+reserName+"'");
+            rs2 = DBConnect.getResultSet("SELECT (room.roomId) FROM room WHERE room.roomName LIKE '"+reserRoom+"'");
+            String query = "INSERT INTO reservations "
+                + "(`guestId`, `roomId`, `createdBy`, `updatedBy`, `checkInDate`, `checkOutDate`, `createdDate`, `updatedDate`) "
+                + "VALUES ( ?, ?, ?, ?, ?, ?, ?, ?)";
+            try{
+                if(rs.next() && rs2.next()){
+                    guestID = rs.getInt("guestId");
+                    roomID = rs2.getInt("roomId");
+                }
+                PreparedStatement stmt = con.prepareStatement(query);
+                stmt.setInt(1, guestID);
+                stmt.setInt(2, roomID);
+                stmt.setInt(3, Storage.ad.getAdminID());
+                stmt.setInt(4, Storage.ad.getAdminID());
+                stmt.setDate(5, sqlDateStart);
+                stmt.setDate(6, sqlDateEnd);
+                stmt.setDate(7, sqlDate);
+                stmt.setDate(8, sqlDate);
+                guestName.setText("");
+                pax.setText("" );
+                reserrorname.setText("");
+                resererrorpax.setText("");
+                resererrorstart.setText("");
+                resererrorend.setText("");
+                int insert = stmt.executeUpdate();
+                System.out.println("Inserted "+insert+" rows.");
+            }catch(SQLException ex){
+                System.out.println(ex);
+            }
+        } else{
+            if(reserName.isEmpty()){
+                reserrorname.setText("!");
+            } else if(!reserName.isEmpty()) {
+                reserrorname.setText("");
+            }
+            if(count <  1){
+                resererrorpax.setText("!");
+            } else if(count >  0) {
+                resererrorpax.setText("");
+            }
+            if(sqlDateStart == null){
+                resererrorstart.setText("!");
+            } else if(sqlDateStart != null) {
+                resererrorstart.setText("");
+            }
+            if(sqlDateEnd == null){
+                resererrorend.setText("!");
+            } else if(sqlDateEnd != null) {
+                resererrorend.setText("");
+            }
+        }
     }//GEN-LAST:event_confirmActionPerformed
 
     private void resolve_edit_confirmMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_resolve_edit_confirmMouseClicked
@@ -1646,6 +1721,10 @@ public class Container extends javax.swing.JFrame {
     private javax.swing.JToggleButton pait_guest;
     private javax.swing.JTextField pax;
     private javax.swing.JLabel pax_guest;
+    private javax.swing.JLabel resererrorend;
+    private javax.swing.JLabel resererrorpax;
+    private javax.swing.JLabel resererrorstart;
+    private javax.swing.JLabel reserrorname;
     private javax.swing.JPanel reservations;
     private javax.swing.JTable reservations_table2;
     private javax.swing.JDialog resolve;
