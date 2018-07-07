@@ -518,6 +518,11 @@ public class Container extends javax.swing.JFrame {
                 cancel_resolve1MouseClicked(evt);
             }
         });
+        cancel_resolve1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancel_resolve1ActionPerformed(evt);
+            }
+        });
 
         confirm_resolve1.setBackground(new java.awt.Color(153, 255, 153));
         confirm_resolve1.setText("Confirm");
@@ -525,11 +530,6 @@ public class Container extends javax.swing.JFrame {
         confirm_resolve1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 confirm_resolve1MouseClicked(evt);
-            }
-        });
-        confirm_resolve1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                confirm_resolve1ActionPerformed(evt);
             }
         });
 
@@ -548,9 +548,6 @@ public class Container extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addGroup(jPanel7Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(OccupiedBtn))
                     .addComponent(room_edit_rate, javax.swing.GroupLayout.DEFAULT_SIZE, 495, Short.MAX_VALUE)
                     .addComponent(room_edit_capacity, javax.swing.GroupLayout.DEFAULT_SIZE, 495, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel7Layout.createSequentialGroup()
@@ -561,7 +558,11 @@ public class Container extends javax.swing.JFrame {
                                 .addComponent(cancel_resolve1, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(29, 29, 29)
                                 .addComponent(confirm_resolve1, javax.swing.GroupLayout.PREFERRED_SIZE, 208, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 0, Short.MAX_VALUE)))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(jPanel7Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(OccupiedBtn)
+                        .addGap(94, 94, 94)))
                 .addContainerGap())
         );
         jPanel7Layout.setVerticalGroup(
@@ -1313,7 +1314,7 @@ public class Container extends javax.swing.JFrame {
             }
             if(count <  1){
                 resererrorpax.setText("!");
-            } else if(count >  0) {
+            } else if(count >   0) {
                 resererrorpax.setText("");
             }
             if(sqlDateStart == null){
@@ -1330,40 +1331,44 @@ public class Container extends javax.swing.JFrame {
     }//GEN-LAST:event_confirmActionPerformed
 
     private void resolve_edit_confirmMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_resolve_edit_confirmMouseClicked
-        Connection con = DBConnect.getConnection();
-        int todoid = Integer.parseInt(resolve_edit_id.getText());
-        
-        String varnewIssue = resolve_edit_room.getItemAt(resolve_edit_room.getSelectedIndex());
-        int roomid = 0;
-        rs2 = DBConnect.getResultSet("SELECT * FROM room WHERE roomName LIKE '"+varnewIssue+"'");
-        try {
-            if(rs2.next()){
-                roomid = rs2.getInt("roomId");
+        if(!resolve_edit_title.getText().isEmpty() && !resolve_edit_detail.getText().isEmpty()){
+            Connection con = DBConnect.getConnection();
+            int todoid = Integer.parseInt(resolve_edit_id.getText());
+
+            String varnewIssue = resolve_edit_room.getItemAt(resolve_edit_room.getSelectedIndex());
+            int roomid = 0;
+            rs2 = DBConnect.getResultSet("SELECT * FROM room WHERE roomName LIKE '"+varnewIssue+"'");
+            try {
+                if(rs2.next()){
+                    roomid = rs2.getInt("roomId");
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(Container.class.getName()).log(Level.SEVERE, null, ex);
             }
-        } catch (SQLException ex) {
-            Logger.getLogger(Container.class.getName()).log(Level.SEVERE, null, ex);
-        }
-            Date currDate = new Date();
-            Calendar c = Calendar.getInstance(); 
-            c.setTime(currDate); 
-            c.add(Calendar.DATE, 1);
-            currDate = c.getTime();
-            java.sql.Date sqlDate = new java.sql.Date(currDate.getTime());
-        String sql = "UPDATE todo SET issueTitle = ?, issueDesc = ?, roomId = ?, updatedBy = ?, updatedDate = ?  WHERE todoId = ?";
-        try {
-            PreparedStatement stmt = con.prepareStatement(sql);
-            rs2 = DBConnect.getResultSet("SELECT (todo.todoId) FROM todo WHERE todo.issueTitle LIKE '"+varnewIssue+"'");
-            stmt.setString(1, resolve_edit_title.getText());
-            stmt.setString(2, resolve_edit_detail.getText());
-            stmt.setInt(3, roomid);
-            stmt.setInt(4, Storage.ad.getAdminID());
-            stmt.setDate(5, sqlDate);
-            stmt.setInt(6, todoid);
-            stmt.executeUpdate();
-            resolve.setVisible(false);
-            initToDoTable();
-        } catch (SQLException ex) {
-            Logger.getLogger(Container.class.getName()).log(Level.SEVERE, null, ex);
+                Date currDate = new Date();
+                Calendar c = Calendar.getInstance(); 
+                c.setTime(currDate); 
+                c.add(Calendar.DATE, 1);
+                currDate = c.getTime();
+                java.sql.Date sqlDate = new java.sql.Date(currDate.getTime());
+            String sql = "UPDATE todo SET issueTitle = ?, issueDesc = ?, roomId = ?, updatedBy = ?, updatedDate = ?  WHERE todoId = ?";
+            try {
+                PreparedStatement stmt = con.prepareStatement(sql);
+                rs2 = DBConnect.getResultSet("SELECT (todo.todoId) FROM todo WHERE todo.issueTitle LIKE '"+varnewIssue+"'");
+                stmt.setString(1, resolve_edit_title.getText());
+                stmt.setString(2, resolve_edit_detail.getText());
+                stmt.setInt(3, roomid);
+                stmt.setInt(4, Storage.ad.getAdminID());
+                stmt.setDate(5, sqlDate);
+                stmt.setInt(6, todoid);
+                stmt.executeUpdate();
+                resolve.setVisible(false);
+                initToDoTable();
+            } catch (SQLException ex) {
+                Logger.getLogger(Container.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }else{
+           JOptionPane.showMessageDialog(rootPane, "Please input valid values.");
         }
     }//GEN-LAST:event_resolve_edit_confirmMouseClicked
   
@@ -1438,7 +1443,16 @@ public class Container extends javax.swing.JFrame {
     private void ValiBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ValiBtnActionPerformed
         // TODO add your handling code here:
         JXMonthView m = (JXMonthView)DateStart.getMonthView();
+        JXMonthView s = (JXMonthView)DateStart.getMonthView();
+         Date currDate = new Date();
+        Calendar cal = Calendar.getInstance(); 
+        cal.setTime(currDate); 
+        cal.add(Calendar.DATE, 1);
+        currDate = cal.getTime();
         m.setSelectionModel(new SingleDaySelectionModel());
+        s.setSelectionModel(new SingleDaySelectionModel());
+        DateStart.getMonthView().setLowerBound(currDate);
+        DateEnd.getMonthView().setLowerBound(currDate);
         String roomName = room.getSelectedItem().toString();
          ArrayList<Date> dt = new ArrayList();
         int roomID = 0;
@@ -1483,27 +1497,21 @@ public class Container extends javax.swing.JFrame {
         String vacancy = "";
         switch(tabname){
             case "Rooms": 
-                    rs = DBConnect.getResultSet("SELECT * FROM room INNER JOIN reservations ON room.roomid = reservations.roomid INNER JOIN guest ON reservations.guestid = guest.guestid");
-                    rs2 = DBConnect.getResultSet("SELECT * FROM room");
+                    rs = DBConnect.getResultSet("SELECT * FROM room");
                     model = (DefaultTableModel) rooms_table1.getModel();
                     model.setRowCount(0);
                     {
                         try {
                             while(rs.next()){
-                                model.addRow(new Object[]{
-                                    rs.getString("roomName"),
-                                    vacancy = (rs.getBoolean("roomVacancy") == true)? "Vacant" : "Occupied",
-                                    rs.getString("guestName"),
-                                });
-                            }
-                            while(rs2.next()){
-                                if(rs2.getBoolean("roomVacancy")){
+                                rs2 = DBConnect.getResultSet("SELECT room.roomId, guest.guestName FROM room INNER JOIN reservations ON room.roomId = reservations.roomId INNER JOIN guest ON reservations.guestId = guest.guestId WHERE room.roomId = "+rs.getInt("roomId")+"");
+                                if(rs2.next()){
                                     model.addRow(new Object[]{
-                                        rs2.getString("roomName"),
-                                        vacancy = (rs2.getBoolean("roomVacancy") == true)? "Vacant" : "Occupied",
-                                        null,
+                                        rs.getString("roomName"),
+                                        vacancy = (rs.getBoolean("roomVacancy") == true)? "Vacant" : "Occupied",
+                                        (!"".equals(rs2.getString("guest.guestName")))? rs2.getString("guestName") : null,
                                     });
                                 }
+                                
                             }
                         } catch (SQLException ex) {
                             Logger.getLogger(Container.class.getName()).log(Level.SEVERE, null, ex);
@@ -1557,17 +1565,6 @@ public class Container extends javax.swing.JFrame {
                             Logger.getLogger(Container.class.getName()).log(Level.SEVERE, null, ex);
                         }
                     }
-                    reservations_table2.addMouseListener(new MouseAdapter() {
-                        public void mousePressed(MouseEvent mouseEvent) {
-                            JTable table =(JTable) mouseEvent.getSource();
-                            Point point = mouseEvent.getPoint();
-                            int row = table.rowAtPoint(point);
-                            int col = table.columnAtPoint(point);
-
-                            if (mouseEvent.getClickCount() == 2 ) {
-                            }
-                        }
-                    });
                     break;
             case "To Do List": 
                     initToDoTable();
@@ -1649,9 +1646,10 @@ public class Container extends javax.swing.JFrame {
         
         
     }//GEN-LAST:event_OccupiedBtnActionPerformed
-    private void confirm_resolve1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirm_resolve1ActionPerformed
+
+    private void cancel_resolve1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancel_resolve1ActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_confirm_resolve1ActionPerformed
+    }//GEN-LAST:event_cancel_resolve1ActionPerformed
 
     public void open() {
 
