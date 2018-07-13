@@ -200,6 +200,9 @@ public class Container extends javax.swing.JFrame {
         errorName = new javax.swing.JLabel();
         errorCapacity = new javax.swing.JLabel();
         errorRate = new javax.swing.JLabel();
+        username1 = new javax.swing.JLabel();
+        username2 = new javax.swing.JLabel();
+        username3 = new javax.swing.JLabel();
 
         resolve.setTitle("Resolve Issue");
         resolve.setMinimumSize(new java.awt.Dimension(500, 350));
@@ -689,7 +692,7 @@ public class Container extends javax.swing.JFrame {
             .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 383, Short.MAX_VALUE)
         );
 
-        menu.addTab("To Do List", toDo);
+        menu.addTab("Issue List", toDo);
 
         rooms.setBackground(new java.awt.Color(255, 255, 255));
 
@@ -975,6 +978,11 @@ public class Container extends javax.swing.JFrame {
         roomName.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         roomName.setToolTipText("Room name");
         roomName.setBorder(javax.swing.BorderFactory.createMatteBorder(0, 0, 2, 0, new java.awt.Color(0, 0, 0)));
+        roomName.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                roomNameActionPerformed(evt);
+            }
+        });
 
         roomRate.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         roomRate.setToolTipText("Room rate");
@@ -992,18 +1000,36 @@ public class Container extends javax.swing.JFrame {
         errorRate.setForeground(new java.awt.Color(255, 153, 102));
         errorRate.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
 
+        username1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        username1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        username1.setText("Room Rate");
+
+        username2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        username2.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        username2.setText("Room Capacity");
+
+        username3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        username3.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        username3.setText("Room Name");
+
         javax.swing.GroupLayout newRoomLayout = new javax.swing.GroupLayout(newRoom);
         newRoom.setLayout(newRoomLayout);
         newRoomLayout.setHorizontalGroup(
             newRoomLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(newRoomLayout.createSequentialGroup()
                 .addGap(158, 158, 158)
-                .addGroup(newRoomLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(roomCapacity)
-                    .addComponent(confirm_newRoom, javax.swing.GroupLayout.DEFAULT_SIZE, 480, Short.MAX_VALUE)
-                    .addComponent(roomName, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(roomRate, javax.swing.GroupLayout.Alignment.LEADING))
-                .addGap(18, 18, 18)
+                .addGroup(newRoomLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(roomCapacity, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(confirm_newRoom, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 494, Short.MAX_VALUE)
+                    .addComponent(roomRate, javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(roomName)
+                    .addGroup(newRoomLayout.createSequentialGroup()
+                        .addGroup(newRoomLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(username3, javax.swing.GroupLayout.PREFERRED_SIZE, 325, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(username1, javax.swing.GroupLayout.PREFERRED_SIZE, 325, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(username2, javax.swing.GroupLayout.PREFERRED_SIZE, 325, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(newRoomLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(errorName, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(errorCapacity, javax.swing.GroupLayout.PREFERRED_SIZE, 50, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -1013,22 +1039,31 @@ public class Container extends javax.swing.JFrame {
         newRoomLayout.setVerticalGroup(
             newRoomLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(newRoomLayout.createSequentialGroup()
-                .addGroup(newRoomLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                .addGroup(newRoomLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(newRoomLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(roomName, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(errorName, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(errorName, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(errorCapacity, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(newRoomLayout.createSequentialGroup()
+                        .addComponent(username3, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(roomName, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(username2, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGroup(newRoomLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(newRoomLayout.createSequentialGroup()
+                        .addGap(28, 28, 28)
+                        .addComponent(errorRate, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(newRoomLayout.createSequentialGroup()
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(roomCapacity, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(username1, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(newRoomLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(roomCapacity, javax.swing.GroupLayout.DEFAULT_SIZE, 55, Short.MAX_VALUE)
-                    .addComponent(errorCapacity, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(newRoomLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(roomRate, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(errorRate, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(140, 140, 140)
+                .addComponent(roomRate, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 43, Short.MAX_VALUE)
                 .addComponent(confirm_newRoom, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(16, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         menu.addTab("Add Room", newRoom);
@@ -1651,6 +1686,10 @@ public class Container extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_cancel_resolve1ActionPerformed
 
+    private void roomNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_roomNameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_roomNameActionPerformed
+
     public void open() {
 
         try {
@@ -1751,5 +1790,8 @@ public class Container extends javax.swing.JFrame {
     private javax.swing.JPanel toDo;
     private javax.swing.JTable toDo_table;
     private javax.swing.JLabel username;
+    private javax.swing.JLabel username1;
+    private javax.swing.JLabel username2;
+    private javax.swing.JLabel username3;
     // End of variables declaration//GEN-END:variables
 }
